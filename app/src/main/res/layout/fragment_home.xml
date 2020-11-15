@@ -5,15 +5,19 @@
 
     <data>
         <variable
-            name="currentDataXML"
-            type="rhett.pezzuti.kotlinbutton.data.CurrentData" />
+            name="buttonVariablesXML"
+            type="rhett.pezzuti.kotlinbutton.database.ButtonVariables" />
+
+        <variable
+            name="homeViewModelXML"
+            type="rhett.pezzuti.kotlinbutton.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeFragment">
+        tools:context=".home.HomeFragment">
 
         <RelativeLayout
             android:id="@+id/LinearLayout"
@@ -88,6 +92,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnText" />
+
+        <Button
+            android:id="@+id/btnSnackbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_snackbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LinearLayout"
+            app:layout_constraintVertical_bias="0.72" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

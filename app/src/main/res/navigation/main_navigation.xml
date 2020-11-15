@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="rhett.pezzuti.kotlinbutton.HomeFragment"
+        android:name="rhett.pezzuti.kotlinbutton.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -59,6 +59,15 @@
         <action
             android:id="@+id/action_textFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="text"
+            app:argType="string" />
+        <argument
+            android:name="sound"
+            app:argType="string" />
+        <argument
+            android:name="picture"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
