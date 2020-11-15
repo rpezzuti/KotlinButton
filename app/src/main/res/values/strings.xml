@@ -5,4 +5,5 @@
     <string name="button_picture">Picture</string>
     <string name="button_text">Text</string>
     <string name="button_sound">Sound</string>
+    <string name="button_snackbar">Snackbar</string>
 </resources>
