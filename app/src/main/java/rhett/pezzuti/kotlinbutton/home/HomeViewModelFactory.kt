@@ -3,7 +3,7 @@ package rhett.pezzuti.kotlinbutton.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class HomeViewModelFactory() : ViewModelProvider.Factory {
+class HomeViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(HomeViewModel::class.java)) {

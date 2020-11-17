@@ -1,4 +1,4 @@
-package rhett.pezzuti.kotlinbutton
+package rhett.pezzuti.kotlinbutton.picture
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,28 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import rhett.pezzuti.kotlinbutton.databinding.FragmentButtonBinding
-
-class ButtonFragment : Fragment() {
-
+import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.databinding.FragmentPictureBinding
 
 
-    private lateinit var binding: FragmentButtonBinding
+class PictureFragment : Fragment() {
+
+    private lateinit var binding: FragmentPictureBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_button,
-                container,
-                false
+                R.layout.fragment_picture,
+                container, false
         )
+
+
+
 
 
 
         return binding.root
     }
+
+
 }

@@ -14,20 +14,14 @@
             android:id="@+id/action_homeFragment_to_textFragment"
             app:destination="@id/textFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_soundFragment"
-            app:destination="@id/soundFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_pictureFragment"
-            app:destination="@id/pictureFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_buttonFragment"
             app:destination="@id/buttonFragment" />
     </fragment>
     <fragment
         android:id="@+id/buttonFragment"
-        android:name="rhett.pezzuti.kotlinbutton.ButtonFragment"
+        android:name="rhett.pezzuti.kotlinbutton.game.GameFragment"
         android:label="fragment_button"
-        tools:layout="@layout/fragment_button" >
+        tools:layout="@layout/fragment_game" >
         <action
             android:id="@+id/action_buttonFragment_to_resultFragment"
             app:destination="@id/resultFragment"
@@ -35,47 +29,41 @@
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
-        android:name="rhett.pezzuti.kotlinbutton.PictureFragment"
+        android:name="rhett.pezzuti.kotlinbutton.picture.PictureFragment"
         android:label="fragment_picture"
         tools:layout="@layout/fragment_picture" >
         <action
-            android:id="@+id/action_pictureFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_pictureFragment_to_soundFragment"
+            app:destination="@id/soundFragment" />
+        <argument android:name="text" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
         android:name="rhett.pezzuti.kotlinbutton.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
+        tools:layout="@layout/fragment_press_me" >
         <action
             android:id="@+id/action_resultFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/textFragment"
-        android:name="rhett.pezzuti.kotlinbutton.TextFragment"
+        android:name="rhett.pezzuti.kotlinbutton.text.TextFragment"
         android:label="fragment_text"
         tools:layout="@layout/fragment_text" >
         <action
-            android:id="@+id/action_textFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <argument
-            android:name="text"
-            app:argType="string" />
-        <argument
-            android:name="sound"
-            app:argType="string" />
-        <argument
-            android:name="picture"
-            app:argType="string" />
+            android:id="@+id/action_textFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
-        android:name="rhett.pezzuti.kotlinbutton.SoundFragment"
+        android:name="rhett.pezzuti.kotlinbutton.sound.SoundFragment"
         android:label="fragment_sound"
         tools:layout="@layout/fragment_sound" >
         <action
             android:id="@+id/action_soundFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument android:name="text" />
+        <argument android:name="picture" />
     </fragment>
 </navigation>

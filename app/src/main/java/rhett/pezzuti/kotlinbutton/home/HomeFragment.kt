@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import rhett.pezzuti.kotlinbutton.R
-import rhett.pezzuti.kotlinbutton.database.ButtonVariables
+import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.databinding.FragmentHomeBinding
 import java.util.*
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+
 
 private const val TAG = "HomeFragment"
 
@@ -21,7 +24,7 @@ class HomeFragment : Fragment() {
 
     /** Variables **/
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
 
 
@@ -40,11 +43,17 @@ class HomeFragment : Fragment() {
 
         /** ViewModel Pipes **/
         viewModelFactory = HomeViewModelFactory()
-        viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         /** Set binding variables **/
-        binding.buttonVariablesXML = ButtonVariables()
-        binding.homeViewModelXML  = viewModel
+        binding.homeViewModelXML  = homeViewModel
+
+
+        homeViewModel.eventChangeText.observe(viewLifecycleOwner, Observer{
+            if (it == true){
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment())
+            }
+        })
 
         return binding.root
     }

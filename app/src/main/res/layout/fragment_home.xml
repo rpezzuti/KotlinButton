@@ -5,10 +5,6 @@
 
     <data>
         <variable
-            name="buttonVariablesXML"
-            type="rhett.pezzuti.kotlinbutton.database.ButtonVariables" />
-
-        <variable
             name="homeViewModelXML"
             type="rhett.pezzuti.kotlinbutton.home.HomeViewModel" />
     </data>
@@ -34,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="24sp"
-                android:text="@={currentDataXML.text}"
+                android:text="text"
                 tools:layout_editor_absoluteX="144dp"
                 tools:layout_editor_absoluteY="146dp" />
 
@@ -43,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_text"
-                android:text="@={currentDataXML.sound}"
+                android:text="sound"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 />
@@ -53,46 +49,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_sound"
-                android:text="@={currentDataXML.picture}"
+                android:text="picture"
                 android:textAlignment="center"
                 android:textSize="24sp" />
-
-
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btnPicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/button_picture"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnText"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+        <!--
+            Add a RecyclerView here to show all the saved button presets
+        -->
 
         <Button
-            android:id="@+id/btnText"
+            android:id="@+id/btnPreset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@string/button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSound"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPicture" />
-
-        <Button
-            android:id="@+id/btnSound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/button_sound"
+            android:onClick="@{() -> homeViewModelXML.onChangeText()}"
+            android:text="@string/button_preset"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnText" />
-
+            app:layout_constraintStart_toStartOf="parent" />
         <Button
             android:id="@+id/btnSnackbar"
             android:layout_width="wrap_content"
@@ -103,7 +78,7 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/LinearLayout"
-            app:layout_constraintVertical_bias="0.72" />
+            app:layout_constraintVertical_bias="0.83" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
