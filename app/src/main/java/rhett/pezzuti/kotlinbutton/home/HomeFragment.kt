@@ -16,6 +16,7 @@ import rhett.pezzuti.kotlinbutton.databinding.FragmentHomeBinding
 import java.util.*
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import rhett.pezzuti.kotlinbutton.database.ButtonDatabase
 
 
 private const val TAG = "HomeFragment"
@@ -40,6 +41,10 @@ class HomeFragment : Fragment() {
                 container,
                 false
         )
+
+        /** Database Pipes **/
+        //val application = requireNotNull(this.activity).application
+        //val dataSource = ButtonDatabase.getInstance(application).buttonDatabaseDao
 
         /** ViewModel Pipes **/
         viewModelFactory = HomeViewModelFactory()

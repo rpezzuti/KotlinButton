@@ -31,6 +31,8 @@ class SoundFragment : Fragment() {
         viewModelFactory = SoundViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(SoundViewModel::class.java)
 
+        val arguments = SoundFragmentArgs.fromBundle(requireArguments())
+
 
 
 

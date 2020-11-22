@@ -9,11 +9,11 @@ class TextViewModel : ViewModel() {
 
     /** LiveData Variables **/
 
-    val _newMessage = MutableLiveData<String>()
+    private val _newMessage = MutableLiveData<String>()
     val newMessage : LiveData<String>
         get() = _newMessage
 
-    val _eventNavForward = MutableLiveData<Boolean>()
+    private val _eventNavForward = MutableLiveData<Boolean>()
     val eventNavForward : LiveData<Boolean>
         get() = _eventNavForward
 
@@ -26,5 +26,9 @@ class TextViewModel : ViewModel() {
 
     fun onSave(message: String){
         _newMessage.value = message
+    }
+
+    fun onNext(){
+        _eventNavForward.value = true
     }
 }
