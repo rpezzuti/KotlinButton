@@ -1,11 +1,15 @@
 package rhett.pezzuti.kotlinbutton.home
 
+import android.app.Application
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
+import rhett.pezzuti.kotlinbutton.database.ButtonDatabaseDao
 import java.util.*
 
 private const val TAG = "HomeViewModel"
@@ -21,14 +25,6 @@ class HomeViewModel : ViewModel() {
     val eventChangeText : LiveData<Boolean>
         get() = _eventChangeText
 
-    private val _eventChangeSound = MutableLiveData<Boolean>()
-    val eventChangeSound : LiveData<Boolean>
-        get() = _eventChangeSound
-
-    private val _eventChangePicture = MutableLiveData<Boolean>()
-    val eventChangePicture : LiveData<Boolean>
-        get() = _eventChangePicture
-
 
     /** Companion Object **/
     companion object {
@@ -41,8 +37,6 @@ class HomeViewModel : ViewModel() {
         Log.i(TAG, "Init block started")
         _number.value = 0
         _eventChangeText.value = false
-        _eventChangeSound.value = false
-        _eventChangePicture.value = false
     }
 
 
@@ -51,15 +45,6 @@ class HomeViewModel : ViewModel() {
     fun onChangeText(){
         _eventChangeText.value = true
     }
-
-    fun onChangeSound(){
-        _eventChangeSound.value = true
-    }
-
-    fun onChangePicture(){
-        _eventChangePicture.value = true
-    }
-
 
 
 }

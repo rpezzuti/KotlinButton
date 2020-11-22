@@ -1,4 +1,4 @@
-package rhett.pezzuti.kotlinbutton
+package rhett.pezzuti.kotlinbutton.game
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import rhett.pezzuti.kotlinbutton.databinding.FragmentButtonBinding
+import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.databinding.FragmentGameBinding
 
-class ButtonFragment : Fragment() {
+class GameFragment : Fragment() {
 
-
-
-    private lateinit var binding: FragmentButtonBinding
+    private lateinit var binding: FragmentGameBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +20,7 @@ class ButtonFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_button,
+                R.layout.fragment_game,
                 container,
                 false
         )

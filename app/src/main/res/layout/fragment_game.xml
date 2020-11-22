@@ -8,10 +8,10 @@
     <data>
         <variable
             name="data1"
-            type="rhett.pezzuti.kotlinbutton.database.ButtonVariables" />
+            type="rhett.pezzuti.kotlinbutton.database.ButtonPreset" />
         <variable
             name="data2"
-            type="rhett.pezzuti.kotlinbutton.database.ButtonVariables" />
+            type="rhett.pezzuti.kotlinbutton.database.ButtonPreset" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

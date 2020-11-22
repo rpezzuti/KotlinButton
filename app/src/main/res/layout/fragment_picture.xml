@@ -1,14 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PictureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="pictureViewModelXML"
+            type="rhett.pezzuti.kotlinbutton.picture.PictureViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="welcome to the picture" />
+        tools:context=".picture.PictureFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/text_picture_intro"
+            style="@style/text_intro_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/text_picture_intro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/grid_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintBottom_toTopOf="@+id/button_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_picture_intro">
+
+            <ImageView
+                android:id="@+id/image_1"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/heart"
+                android:layout_margin="@dimen/margin_small"/>
+
+            <ImageView
+                android:id="@+id/image_2"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/awesome"
+                android:layout_toEndOf="@id/image_1"
+                android:layout_margin="@dimen/margin_small" />
+
+            <ImageView
+                android:id="@+id/image_3"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/i_miss_you"
+                android:layout_toEndOf="@id/image_2"
+                android:layout_margin="@dimen/margin_small"/>
+
+            <ImageView
+                android:id="@+id/image_4"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_below="@id/image_1"
+                android:layout_margin="@dimen/margin_small"
+                android:src="@drawable/im_a_ball" />
+
+            <ImageView
+                android:id="@+id/image_5"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_margin="@dimen/margin_small"
+                android:src="@drawable/sorry"
+                android:layout_toEndOf="@id/image_4"
+                android:layout_below="@id/image_2" />
+
+            <ImageView
+                android:id="@+id/image_6"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/sprout"
+                android:layout_below="@id/image_3"
+                android:layout_toEndOf="@id/image_5"
+                android:layout_margin="@dimen/margin_small" />
+
+            <ImageView
+                android:id="@+id/image_7"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/stop"
+                android:layout_below="@id/image_4"
+                android:layout_margin="@dimen/margin_small" />
+
+            <ImageView
+                android:id="@+id/image_8"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/tongue"
+                android:layout_below="@id/image_5"
+                android:layout_toEndOf="@id/image_7"
+                android:layout_margin="@dimen/margin_small" />
+
+            <ImageView
+                android:id="@+id/image_9"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@drawable/troll"
+                android:layout_toEndOf="@id/image_8"
+                android:layout_below="@id/image_6"
+                android:layout_margin="@dimen/margin_small" />
+
+            <ImageView
+                android:id="@+id/image_10"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_below="@id/image_7"
+                android:layout_margin="@dimen/margin_small"
+                android:src="@drawable/yes" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/margin_small"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
