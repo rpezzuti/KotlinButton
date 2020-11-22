@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.databinding.FragmentPictureBinding
 
@@ -32,6 +33,14 @@ class PictureFragment : Fragment() {
         pictureViewModel = ViewModelProvider(this, viewModelFactory).get(PictureViewModel::class.java)
         binding.pictureViewModelXML = pictureViewModel
 
+        binding.lifecycleOwner = this
+
+        pictureViewModel.eventNagivateForward.observe(viewLifecycleOwner, {event ->
+            if (event == true){
+                findNavController().navigate(PictureFragmentDirections.actionPictureFragmentToSoundFragment("text","picture"))
+                pictureViewModel.onDoneNavigating()
+            }
+        })
 
 
         return binding.root

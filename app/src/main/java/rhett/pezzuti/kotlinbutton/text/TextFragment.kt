@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.TextFragmentDirections
 import rhett.pezzuti.kotlinbutton.databinding.FragmentTextBinding
+import timber.log.Timber
 
 private const val TAG = "TextFragment"
 
@@ -25,7 +27,7 @@ class TextFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        Log.i(TAG, "onCreateView() called")
+       Timber.i("onCreateView() called")
         binding = DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_text,
@@ -47,23 +49,21 @@ class TextFragment : Fragment() {
             onSaveMessage()
         }
 
-        textViewModel.eventNavForward.observe(viewLifecycleOwner, { event ->
-            if (event == true){
-                findNavController().navigate(
-                        TextFragmentDirections.actionTextFragmentToPictureFragment(binding.etNewText.text.toString()))
-            }
-        })
-
-
-
+//        textViewModel.eventNavForward.observe(viewLifecycleOwner, { event ->
+//            if (event == true){
+//                this.findNavController().navigate(
+//                        TextFragmentDirections.actionTextFragmentToPictureFragment(binding.etNewText.text.toString()))
+//                textViewModel.onDoneNavigating()
+//            }
+//        })
 
 
         return binding.root
     }
 
     private
-    fun onSaveMessage(){
-        Log.i(TAG, "onSavePreset() called")
+    fun onSaveMessage() {
+        Timber.i("onSavePreset() called")
         textViewModel.onSave(binding.etNewText.text.toString())
 
         // TODO: Add the message to the database

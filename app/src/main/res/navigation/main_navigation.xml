@@ -15,7 +15,9 @@
             app:destination="@id/textFragment" />
         <action
             android:id="@+id/action_homeFragment_to_buttonFragment"
-            app:destination="@id/buttonFragment" />
+            app:destination="@id/buttonFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/buttonFragment"
@@ -34,7 +36,9 @@
         tools:layout="@layout/fragment_picture" >
         <action
             android:id="@+id/action_pictureFragment_to_soundFragment"
-            app:destination="@id/soundFragment" />
+            app:destination="@id/soundFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <argument android:name="text" />
     </fragment>
     <fragment
@@ -44,16 +48,19 @@
         tools:layout="@layout/fragment_press_me" >
         <action
             android:id="@+id/action_resultFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/textFragment"
-        android:name="rhett.pezzuti.kotlinbutton.text.TextFragment"
         android:label="fragment_text"
-        tools:layout="@layout/fragment_text" >
+        tools:layout="@layout/fragment_text">
         <action
             android:id="@+id/action_textFragment_to_pictureFragment"
-            app:destination="@id/pictureFragment" />
+            app:destination="@id/pictureFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
@@ -62,7 +69,9 @@
         tools:layout="@layout/fragment_sound" >
         <action
             android:id="@+id/action_soundFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
         <argument android:name="text" />
         <argument android:name="picture" />
     </fragment>

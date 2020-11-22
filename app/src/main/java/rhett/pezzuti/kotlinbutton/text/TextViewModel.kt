@@ -31,4 +31,7 @@ class TextViewModel : ViewModel() {
     fun onNext(){
         _eventNavForward.value = true
     }
+    fun onDoneNavigating(){
+        _eventNavForward.value = false
+    }
 }

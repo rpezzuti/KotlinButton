@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/relativeLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnSnackbar"
+            app:layout_constraintBottom_toTopOf="@id/btnLaunch"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_small"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
@@ -75,13 +75,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnSnackbar" />
+            app:layout_constraintStart_toEndOf="@+id/btnLaunch" />
 
         <Button
-            android:id="@+id/btnSnackbar"
+            android:id="@+id/btnLaunch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_snackbar"
+            android:text="@string/button_launch"
+            android:onClick="@{() -> homeViewModelXML.onLaunch()}"
             app:layout_constraintBaseline_toBaselineOf="@+id/btnPreset"
             app:layout_constraintEnd_toStartOf="@+id/btnPreset"
             app:layout_constraintHorizontal_bias="0.5"

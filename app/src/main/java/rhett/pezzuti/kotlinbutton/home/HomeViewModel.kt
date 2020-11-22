@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 import rhett.pezzuti.kotlinbutton.database.ButtonDatabaseDao
+import timber.log.Timber
 import java.util.*
 
 private const val TAG = "HomeViewModel"
@@ -25,6 +26,10 @@ class HomeViewModel : ViewModel() {
     val eventChangeText : LiveData<Boolean>
         get() = _eventChangeText
 
+    private val _eventLaunch = MutableLiveData<Boolean>()
+    val eventLaunch : LiveData<Boolean>
+        get() = _eventLaunch
+
 
     /** Companion Object **/
     companion object {
@@ -34,17 +39,33 @@ class HomeViewModel : ViewModel() {
 
     /** Init Block **/
     init {
-        Log.i(TAG, "Init block started")
+        Timber.i("Init block started")
         _number.value = 0
         _eventChangeText.value = false
+        _eventLaunch.value = false
     }
 
 
 
     /** Navigation Methods **/
     fun onChangeText(){
+        Timber.i("onChangeText() called")
         _eventChangeText.value = true
+        Timber.i("eventChangedText.value set to true")
+    }
+    fun doneChangingText(){
+        _eventChangeText.value = false
+    }
+    fun onLaunch(){
+        _eventLaunch.value = true
+    }
+    fun doneLaunching(){
+        _eventLaunch.value = false
     }
 
 
+    override fun onCleared() {
+        super.onCleared()
+        Timber.i("onCleared() called")
+    }
 }
