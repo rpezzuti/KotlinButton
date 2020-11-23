@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.databinding.TextFragmentBinding
 
@@ -31,13 +32,17 @@ class TextFragment : Fragment() {
         /** ViewModel Pipes **/
         viewModelFactory = TextViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(TextViewModel::class.java)
+        binding.textViewModelXML = viewModel
         binding.lifecycleOwner = this
 
 
 
-
-
-
+        viewModel.eventSaveMessage.observe(viewLifecycleOwner, {event ->
+            if (event == true){
+                this.findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment())
+                viewModel.onDoneSaveMessage()
+            }
+        })
 
 
 
