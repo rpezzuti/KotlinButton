@@ -16,7 +16,7 @@
             app:enterAnim="@anim/slide_in_top"
             app:exitAnim="@anim/slide_out_bottom" />
         <action
-            android:id="@+id/action_homeFragment_to_textFragment"
+            android:id="@+id/action_homeFragment_to_textFragment2"
             app:destination="@id/textFragment" />
     </fragment>
     <fragment
@@ -52,16 +52,6 @@
             app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
-        android:id="@+id/textFragment"
-        android:label="fragment_text"
-        tools:layout="@layout/fragment_text">
-        <action
-            android:id="@+id/action_textFragment_to_pictureFragment"
-            app:destination="@id/pictureFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
-    </fragment>
-    <fragment
         android:id="@+id/soundFragment"
         android:name="rhett.pezzuti.kotlinbutton.sound.SoundFragment"
         android:label="fragment_sound"
@@ -71,5 +61,14 @@
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/textFragment"
+        android:name="rhett.pezzuti.kotlinbutton.text.TextFragment"
+        android:label="text_fragment"
+        tools:layout="@layout/text_fragment" >
+        <action
+            android:id="@+id/action_textFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment" />
     </fragment>
 </navigation>

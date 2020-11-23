@@ -85,18 +85,18 @@ class HomeFragment : Fragment() {
             if (it == true) {
                 Timber.i("eventChangeText observer triggered")
 
-                val action = HomeFragmentDirections.actionHomeFragmentToTextFragment()
+
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment2())
+
+
 
                 Timber.i("this is the current destination ${findNavController().currentDestination?.id}")
                 Timber.i("this is the id of the home fragment ${R.id.homeFragment}")
-                Timber.i("this is the id of the text fragment ${R.id.textFragment}")
 
-                if (findNavController().currentDestination?.id == R.id.textFragment){
+                if (findNavController().currentDestination?.id == R.id.homeFragment){
                     Timber.i("currentDestination is the text fragment")
-                    this.findNavController().navigate(action)
                 } else {
                     Timber.i("else block called")
-                    this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment())
                 }
 
                 Timber.i("navigation action called")

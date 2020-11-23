@@ -2,7 +2,6 @@ package rhett.pezzuti.kotlinbutton.text
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import rhett.pezzuti.kotlinbutton.home.HomeViewModel
 
 @Suppress("UNCHECKED_CAST")
 class TextViewModelFactory : ViewModelProvider.Factory {
@@ -13,5 +12,6 @@ class TextViewModelFactory : ViewModelProvider.Factory {
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
+
 
 }

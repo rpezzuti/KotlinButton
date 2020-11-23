@@ -68,6 +68,7 @@ dependencies {
 
     // Timber - Make sure to add name of application class to manifest
     implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
     // Testing
     testImplementation 'junit:junit:4.13.1'
