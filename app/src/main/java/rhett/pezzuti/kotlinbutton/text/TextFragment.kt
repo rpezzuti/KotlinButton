@@ -28,15 +28,10 @@ class TextFragment : Fragment() {
             false
         )
 
+        /** ViewModel Pipes **/
         viewModelFactory = TextViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(TextViewModel::class.java)
-
-
-
-
-
-
-
+        binding.lifecycleOwner = this
 
 
 
