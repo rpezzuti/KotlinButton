@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.databinding.FragmentSoundBinding
 
@@ -30,7 +31,15 @@ class SoundFragment : Fragment() {
 
         viewModelFactory = SoundViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(SoundViewModel::class.java)
+        binding.soundViewModelXML = viewModel
+        binding.lifecycleOwner = this
 
+        viewModel.eventGoHome.observe(viewLifecycleOwner, { event ->
+            if (event == true) {
+                this.findNavController().navigate(SoundFragmentDirections.actionSoundFragmentToHomeFragment())
+                viewModel.doneGoingHome()
+            }
+        })
 
 
 
