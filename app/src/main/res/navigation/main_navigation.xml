@@ -11,11 +11,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_textFragment"
-            app:destination="@id/textFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_buttonFragment"
-            app:destination="@id/buttonFragment" />
+            app:destination="@id/buttonFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_homeFragment_to_textFragment2"
+            app:destination="@id/textFragment" />
     </fragment>
     <fragment
         android:id="@+id/buttonFragment"
@@ -34,8 +36,9 @@
         tools:layout="@layout/fragment_picture" >
         <action
             android:id="@+id/action_pictureFragment_to_soundFragment"
-            app:destination="@id/soundFragment" />
-        <argument android:name="text" />
+            app:destination="@id/soundFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
@@ -44,16 +47,9 @@
         tools:layout="@layout/fragment_press_me" >
         <action
             android:id="@+id/action_resultFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/textFragment"
-        android:name="rhett.pezzuti.kotlinbutton.text.TextFragment"
-        android:label="fragment_text"
-        tools:layout="@layout/fragment_text" >
-        <action
-            android:id="@+id/action_textFragment_to_pictureFragment"
-            app:destination="@id/pictureFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/soundFragment"
@@ -62,8 +58,17 @@
         tools:layout="@layout/fragment_sound" >
         <action
             android:id="@+id/action_soundFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <argument android:name="text" />
-        <argument android:name="picture" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/textFragment"
+        android:name="rhett.pezzuti.kotlinbutton.text.TextFragment"
+        android:label="text_fragment"
+        tools:layout="@layout/text_fragment" >
+        <action
+            android:id="@+id/action_textFragment_to_pictureFragment"
+            app:destination="@id/pictureFragment" />
     </fragment>
 </navigation>

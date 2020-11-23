@@ -15,8 +15,12 @@ import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.databinding.FragmentHomeBinding
 import java.util.*
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import rhett.pezzuti.kotlinbutton.database.ButtonDatabase
+import timber.log.Timber
+import java.lang.Exception
+import java.lang.IllegalArgumentException
 
 
 private const val TAG = "HomeFragment"
@@ -28,12 +32,31 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var viewModelFactory: HomeViewModelFactory
 
+    /**
+     *                             TODO BLOCK
+     * - I'd be awesome to have each variable of the preset (teXt, sound, and picture) be saved immediately
+     *   after navigating away from the fragment. Could initialize the new preset when the make preset
+     *   button is called, and then update the preset as the user navigates through the fragments.
+     *
+     * - Create the RecyclerView to hold past presets in the database, for the lols.
+     *
+     * - Create a View object that displays the current preset, and make it clear to the user
+     *   that it is the current preset and not part of the past presets in the RecyclerView.
+     *
+     * - Make the fragment where the user pushes the button a little prettier
+     *          • Edit the background?
+     *          • Add a joke?
+     *          • IDFK
+     *
+     * - Add animations
+     */
+
 
 
     /** onCreate **/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        Log.i(TAG, "onCreateView called")
+        Timber.i("onCreateView called")
 
         binding = DataBindingUtil.inflate(
                 inflater,
@@ -51,12 +74,40 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         /** Set binding variables **/
-        binding.homeViewModelXML  = homeViewModel
+        binding.homeViewModelXML = homeViewModel
+
+        /** Pipes **/
+        binding.lifecycleOwner = this
 
 
-        homeViewModel.eventChangeText.observe(viewLifecycleOwner, Observer{
-            if (it == true){
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment())
+        /** Navigation Observers **/
+        homeViewModel.eventChangeText.observe(viewLifecycleOwner, {
+            if (it == true) {
+                Timber.i("eventChangeText observer triggered")
+
+
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment2())
+
+
+
+                Timber.i("this is the current destination ${findNavController().currentDestination?.id}")
+                Timber.i("this is the id of the home fragment ${R.id.homeFragment}")
+
+                if (findNavController().currentDestination?.id == R.id.homeFragment){
+                    Timber.i("currentDestination is the text fragment")
+                } else {
+                    Timber.i("else block called")
+                }
+
+                Timber.i("navigation action called")
+                homeViewModel.doneChangingText()
+            }
+        })
+
+        homeViewModel.eventLaunch.observe(viewLifecycleOwner, {
+            if (it == true) {
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment())
+                homeViewModel.doneLaunching()
             }
         })
 
@@ -64,13 +115,30 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
-
-    private
-    fun showSnackbar(view: View) {
-        val message = Locale.JAPAN
-        Snackbar.make(view, "$message", Snackbar.LENGTH_SHORT).show()
+    /** Lifecycle Methods **/
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Timber.i("onCreate() called")
+    }
+    override fun onStart() {
+        super.onStart()
+        Timber.i("onStart() called")
+    }
+    override fun onResume() {
+        super.onResume()
+        Timber.i("onResume() called")
+    }
+    override fun onPause() {
+        super.onPause()
+        Timber.i("onPause() called")
+    }
+    override fun onStop() {
+        super.onStop()
+        Timber.i("onStop() called")
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.i("onDestroy() called")
     }
 }
 
