@@ -15,9 +15,12 @@ import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.databinding.FragmentHomeBinding
 import java.util.*
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import rhett.pezzuti.kotlinbutton.database.ButtonDatabase
 import timber.log.Timber
+import java.lang.Exception
+import java.lang.IllegalArgumentException
 
 
 private const val TAG = "HomeFragment"
@@ -81,7 +84,21 @@ class HomeFragment : Fragment() {
         homeViewModel.eventChangeText.observe(viewLifecycleOwner, {
             if (it == true) {
                 Timber.i("eventChangeText observer triggered")
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment())
+
+                val action = HomeFragmentDirections.actionHomeFragmentToTextFragment()
+
+                Timber.i("this is the current destination ${findNavController().currentDestination?.id}")
+                Timber.i("this is the id of the home fragment ${R.id.homeFragment}")
+                Timber.i("this is the id of the text fragment ${R.id.textFragment}")
+
+                if (findNavController().currentDestination?.id == R.id.textFragment){
+                    Timber.i("currentDestination is the text fragment")
+                    this.findNavController().navigate(action)
+                } else {
+                    Timber.i("else block called")
+                    this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment())
+                }
+
                 Timber.i("navigation action called")
                 homeViewModel.doneChangingText()
             }

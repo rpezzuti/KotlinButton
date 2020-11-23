@@ -27,7 +27,7 @@ class TextFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-       Timber.i("onCreateView() called")
+        Timber.i("onCreateView() called")
         binding = DataBindingUtil.inflate(
                 inflater,
                 R.layout.fragment_text,
@@ -49,13 +49,13 @@ class TextFragment : Fragment() {
             onSaveMessage()
         }
 
-//        textViewModel.eventNavForward.observe(viewLifecycleOwner, { event ->
-//            if (event == true){
-//                this.findNavController().navigate(
-//                        TextFragmentDirections.actionTextFragmentToPictureFragment(binding.etNewText.text.toString()))
-//                textViewModel.onDoneNavigating()
-//            }
-//        })
+        textViewModel.eventNavForward.observe(viewLifecycleOwner, { event ->
+            if (event == true){
+                this.findNavController().navigate(
+                        TextFragmentDirections.actionTextFragmentToPictureFragment())
+                textViewModel.onDoneNavigating()
+            }
+        })
 
 
         return binding.root

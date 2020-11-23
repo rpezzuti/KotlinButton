@@ -11,13 +11,13 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_textFragment"
-            app:destination="@id/textFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_buttonFragment"
             app:destination="@id/buttonFragment"
             app:enterAnim="@anim/slide_in_top"
             app:exitAnim="@anim/slide_out_bottom" />
+        <action
+            android:id="@+id/action_homeFragment_to_textFragment"
+            app:destination="@id/textFragment" />
     </fragment>
     <fragment
         android:id="@+id/buttonFragment"
@@ -39,7 +39,6 @@
             app:destination="@id/soundFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
-        <argument android:name="text" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
@@ -72,7 +71,5 @@
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
-        <argument android:name="text" />
-        <argument android:name="picture" />
     </fragment>
 </navigation>
