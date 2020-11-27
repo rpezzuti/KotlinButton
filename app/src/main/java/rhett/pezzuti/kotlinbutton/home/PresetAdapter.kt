@@ -22,7 +22,6 @@ class PresetAdapter : RecyclerView.Adapter<PresetAdapter.ViewHolder>() {
 
     override fun getItemCount() = data.size
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
@@ -41,9 +40,9 @@ class PresetAdapter : RecyclerView.Adapter<PresetAdapter.ViewHolder>() {
 
         fun bind(item: ButtonPreset){
             image.setImageResource(R.drawable.ic_launcher_background)
-            message.text = R.string.app_name.toString()
-            sound.text = R.string.app_name.toString()
-            TODO("Update this shit")
+            message.text = item.text
+            sound.text = item.sound.toString()
+            TODO("Update this shit to get the right variables")
         }
 
 

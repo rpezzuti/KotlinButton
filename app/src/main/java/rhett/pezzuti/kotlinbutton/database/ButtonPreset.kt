@@ -14,8 +14,8 @@ data class ButtonPreset(
         var text: String = "text",
 
         @ColumnInfo(name = "message_sound")
-        var sound: Int = 4,
+        var sound: Int = -1,
 
         @ColumnInfo(name = "message_picture")
-        var picture: Int = 5
+        var picture: Int = -1
 )

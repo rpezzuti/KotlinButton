@@ -23,4 +23,6 @@
     <string name="text_picture_intro">Choose your picture!</string>
     <string name="button_launch">Launch</string>
     <string name="text_press_me">Press Me!</string>
+    <string name="button_clear">Clear</string>
+    <string name="cleared_message">All presets deleted!</string>
 </resources>
