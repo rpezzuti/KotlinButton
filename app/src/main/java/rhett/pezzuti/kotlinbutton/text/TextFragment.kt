@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.database.PresetDatabase
+import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
 import rhett.pezzuti.kotlinbutton.databinding.TextFragmentBinding
 
 class TextFragment : Fragment() {
@@ -30,7 +32,10 @@ class TextFragment : Fragment() {
         )
 
         /** ViewModel Pipes **/
-        viewModelFactory = TextViewModelFactory()
+        val application = requireNotNull(this.activity).application
+        val dataSource = PresetDatabase.getInstance(application).presetDatabaseDao
+
+        viewModelFactory = TextViewModelFactory(0L, dataSource)
         viewModel = ViewModelProvider(this, viewModelFactory).get(TextViewModel::class.java)
         binding.textViewModelXML = viewModel
         binding.lifecycleOwner = this

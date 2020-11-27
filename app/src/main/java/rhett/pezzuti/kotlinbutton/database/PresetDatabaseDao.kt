@@ -1,6 +1,7 @@
 package rhett.pezzuti.kotlinbutton.database
 
 
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -8,7 +9,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface ButtonDatabaseDao {
+interface PresetDatabaseDao {
 
     @Insert
     fun insert(preset: ButtonPreset)
@@ -27,5 +28,5 @@ interface ButtonDatabaseDao {
     fun getAllPresets(): LiveData<List<ButtonPreset>>
 
     @Query ("SELECT * FROM button_preset_table ORDER BY presetID DESC LIMIT 1")
-    fun getCurrentPreset()
+    fun getCurrentPreset(): ButtonPreset?
 }

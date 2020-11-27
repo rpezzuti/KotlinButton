@@ -1,7 +1,6 @@
 package rhett.pezzuti.kotlinbutton.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import rhett.pezzuti.kotlinbutton.R
-import rhett.pezzuti.kotlinbutton.database.ButtonPreset
+import rhett.pezzuti.kotlinbutton.database.PresetDatabase
 import rhett.pezzuti.kotlinbutton.databinding.FragmentHomeBinding
-import java.util.*
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import rhett.pezzuti.kotlinbutton.database.ButtonDatabase
 import timber.log.Timber
-import java.lang.Exception
-import java.lang.IllegalArgumentException
 
 
 private const val TAG = "HomeFragment"
@@ -48,7 +40,6 @@ class HomeFragment : Fragment() {
      *          • Add a joke?
      *          • IDFK
      *
-     * - Add animations
      */
 
 
@@ -66,11 +57,11 @@ class HomeFragment : Fragment() {
         )
 
         /** Database Pipes **/
-        //val application = requireNotNull(this.activity).application
-        //val dataSource = ButtonDatabase.getInstance(application).buttonDatabaseDao
+        val application = requireNotNull(this.activity).application
+        val dataSource = PresetDatabase.getInstance(application).presetDatabaseDao
 
         /** ViewModel Pipes **/
-        viewModelFactory = HomeViewModelFactory()
+        viewModelFactory = HomeViewModelFactory(dataSource, application)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
         /** Set binding variables **/
@@ -108,6 +99,17 @@ class HomeFragment : Fragment() {
             if (it == true) {
                 this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment())
                 homeViewModel.doneLaunching()
+            }
+        })
+
+        homeViewModel.showSnackBarEvent.observe(viewLifecycleOwner, { it ->
+            if (it == true){
+                Snackbar.make(
+                    requireActivity().findViewById(android.R.id.content),
+                    getString(R.string.cleared_message),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                homeViewModel.doneShowingSnackBar()
             }
         })
 

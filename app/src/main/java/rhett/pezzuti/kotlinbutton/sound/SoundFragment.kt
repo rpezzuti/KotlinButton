@@ -14,7 +14,7 @@ import rhett.pezzuti.kotlinbutton.databinding.FragmentSoundBinding
 class SoundFragment : Fragment() {
 
     private lateinit var binding: FragmentSoundBinding
-    private lateinit var viewModel: SoundViewModel
+    private lateinit var soundViewModel: SoundViewModel
     private lateinit var viewModelFactory: SoundViewModelFactory
 
     override fun onCreateView(
@@ -28,16 +28,15 @@ class SoundFragment : Fragment() {
                 false
         )
 
-
         viewModelFactory = SoundViewModelFactory()
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SoundViewModel::class.java)
-        binding.soundViewModelXML = viewModel
+        soundViewModel = ViewModelProvider(this, viewModelFactory).get(SoundViewModel::class.java)
+        binding.soundViewModelXML = soundViewModel
         binding.lifecycleOwner = this
 
-        viewModel.eventGoHome.observe(viewLifecycleOwner, { event ->
+        soundViewModel.eventGoHome.observe(viewLifecycleOwner, { event ->
             if (event == true) {
                 this.findNavController().navigate(SoundFragmentDirections.actionSoundFragmentToHomeFragment())
-                viewModel.doneGoingHome()
+                soundViewModel.doneGoingHome()
             }
         })
 

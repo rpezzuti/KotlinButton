@@ -1,21 +1,22 @@
 package rhett.pezzuti.kotlinbutton.home
 
 import android.app.Application
-import android.util.Log
-import android.view.View
 import android.widget.Button
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.google.android.material.snackbar.Snackbar
-import rhett.pezzuti.kotlinbutton.database.ButtonDatabaseDao
+import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import rhett.pezzuti.kotlinbutton.database.ButtonPreset
+import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
 import timber.log.Timber
-import java.util.*
 
 private const val TAG = "HomeViewModel"
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    val database: PresetDatabaseDao,
+    application: Application
+) : AndroidViewModel(application){
 
     /** Encapsulated Variables **/
     private val _number = MutableLiveData<Int>()
@@ -30,21 +31,53 @@ class HomeViewModel : ViewModel() {
     val eventLaunch : LiveData<Boolean>
         get() = _eventLaunch
 
+    private val _showSnackBarEvent = MutableLiveData<Boolean>()
+    val showSnackBarEvent : LiveData<Boolean>
+        get() = _showSnackBarEvent
+
+
+    private var homeViewModelJob = Job()
+    override fun onCleared() {
+        Timber.i("onCleared() called")
+        homeViewModelJob.cancel()
+        super.onCleared()
+    }
+
+    private var preset = MutableLiveData<ButtonPreset?>()
 
     /** Companion Object **/
     companion object {
         private const val TAG = "HomeViewModel"
     }
 
-
     /** Init Block **/
     init {
         Timber.i("Init block started")
+        initializePreset()
         _number.value = 0
         _eventChangeText.value = false
         _eventLaunch.value = false
+        _showSnackBarEvent.value = false
     }
 
+    private fun initializePreset() {
+        viewModelScope.launch {
+            Timber.i("initializePreset() called")
+            preset.value = getCurrentPresetFromDatabase()
+        }
+    }
+
+    private suspend fun getCurrentPresetFromDatabase(): ButtonPreset?{
+        return withContext(Dispatchers.IO) {
+            Timber.i("getCurrentPresetFromDatabase() called")
+            var preset = database.getCurrentPreset()
+
+            if (preset?.sound == -1){
+                preset = null
+            }
+            preset
+        }
+    }
 
 
     /** Navigation Methods **/
@@ -62,10 +95,23 @@ class HomeViewModel : ViewModel() {
     fun doneLaunching(){
         _eventLaunch.value = false
     }
-
-
-    override fun onCleared() {
-        super.onCleared()
-        Timber.i("onCleared() called")
+    fun doneShowingSnackBar(){
+        _showSnackBarEvent.value = false
     }
+
+    fun onClear(){
+        viewModelScope.launch {
+            clear()
+            preset.value = null
+            _showSnackBarEvent.value = true
+        }
+    }
+
+    private suspend fun clear() {
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
+    }
+
+
 }
