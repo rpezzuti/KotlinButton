@@ -36,14 +36,15 @@ class HomeViewModel(
         get() = _showSnackBarEvent
 
 
+    /** Current Mutable Preset, could be null **/
+    private var preset = MutableLiveData<ButtonPreset?>()
+
     private var homeViewModelJob = Job()
     override fun onCleared() {
         Timber.i("onCleared() called")
         homeViewModelJob.cancel()
         super.onCleared()
     }
-
-    private var preset = MutableLiveData<ButtonPreset?>()
 
     /** Companion Object **/
     companion object {
@@ -54,6 +55,7 @@ class HomeViewModel(
     init {
         Timber.i("Init block started")
         initializePreset()
+        Timber.i("initializePreset() finished")
         _number.value = 0
         _eventChangeText.value = false
         _eventLaunch.value = false
@@ -81,8 +83,8 @@ class HomeViewModel(
 
 
     /** Navigation Methods **/
-    fun onChangeText(){
-        Timber.i("onChangeText() called")
+    fun onSetText(){
+        Timber.i("onSetText() called")
         _eventChangeText.value = true
         Timber.i("eventChangedText.value set to true")
     }
