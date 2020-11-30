@@ -1,7 +1,6 @@
 package rhett.pezzuti.kotlinbutton.home
 
 import android.app.Application
-import android.widget.Button
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,17 +18,14 @@ class HomeViewModel(
 ) : AndroidViewModel(application){
 
     /** Encapsulated Variables **/
-    private val _number = MutableLiveData<Int>()
-    val number : LiveData<Int>
-        get() = _number
 
-    private val _eventChangeText = MutableLiveData<Boolean>()
-    val eventChangeText : LiveData<Boolean>
-        get() = _eventChangeText
+    private val _navigateToSetText = MutableLiveData<Boolean>()
+    val navigateToSetText : LiveData<Boolean>
+        get() = _navigateToSetText
 
-    private val _eventLaunch = MutableLiveData<Boolean>()
-    val eventLaunch : LiveData<Boolean>
-        get() = _eventLaunch
+    private val _navigateToButton = MutableLiveData<Boolean>()
+    val navigateToButton : LiveData<Boolean>
+        get() = _navigateToButton
 
     private val _showSnackBarEvent = MutableLiveData<Boolean>()
     val showSnackBarEvent : LiveData<Boolean>
@@ -43,7 +39,7 @@ class HomeViewModel(
         super.onCleared()
     }
 
-    private var preset = MutableLiveData<ButtonPreset?>()
+    val presets = database.getAllPresets()
 
     /** Companion Object **/
     companion object {
@@ -53,47 +49,43 @@ class HomeViewModel(
     /** Init Block **/
     init {
         Timber.i("Init block started")
-        initializePreset()
-        _number.value = 0
-        _eventChangeText.value = false
-        _eventLaunch.value = false
+        Timber.i("initializePreset() finished")
+        sampleData()
+        _navigateToSetText.value = false
+        _navigateToButton.value = false
         _showSnackBarEvent.value = false
     }
 
-    private fun initializePreset() {
+
+
+    private fun sampleData(){
         viewModelScope.launch {
-            Timber.i("initializePreset() called")
-            preset.value = getCurrentPresetFromDatabase()
+            val samplePreset = ButtonPreset()
+            samplePreset.text = "sample text"
+            samplePreset.sound = 4
+            samplePreset.picture = 5
+            insert(samplePreset)
         }
     }
 
-    private suspend fun getCurrentPresetFromDatabase(): ButtonPreset?{
-        return withContext(Dispatchers.IO) {
-            Timber.i("getCurrentPresetFromDatabase() called")
-            var preset = database.getCurrentPreset()
-
-            if (preset?.sound == -1){
-                preset = null
-            }
-            preset
+    private suspend fun insert(preset: ButtonPreset){
+        withContext(Dispatchers.IO){
+            database.insert(preset)
         }
     }
-
 
     /** Navigation Methods **/
-    fun onChangeText(){
-        Timber.i("onChangeText() called")
-        _eventChangeText.value = true
-        Timber.i("eventChangedText.value set to true")
+    fun onSetText(){
+        _navigateToSetText.value = true
     }
     fun doneChangingText(){
-        _eventChangeText.value = false
+        _navigateToSetText.value = false
     }
     fun onLaunch(){
-        _eventLaunch.value = true
+        _navigateToButton.value = true
     }
     fun doneLaunching(){
-        _eventLaunch.value = false
+        _navigateToButton.value = false
     }
     fun doneShowingSnackBar(){
         _showSnackBarEvent.value = false
@@ -102,7 +94,6 @@ class HomeViewModel(
     fun onClear(){
         viewModelScope.launch {
             clear()
-            preset.value = null
             _showSnackBarEvent.value = true
         }
     }

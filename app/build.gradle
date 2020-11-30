@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs'
 }
 
@@ -72,6 +73,8 @@ dependencies {
 
     // Timber - Make sure to add name of application class to manifest
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 
     // Testing

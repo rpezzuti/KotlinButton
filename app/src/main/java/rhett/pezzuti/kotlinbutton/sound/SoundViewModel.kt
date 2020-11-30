@@ -10,6 +10,10 @@ class SoundViewModel : ViewModel(){
     val eventGoHome : LiveData<Boolean>
         get() = _eventGoHome
 
+    private val _sound = MutableLiveData<Int>()
+    val sound : LiveData<Int>
+        get() = _sound
+
     init {
         _eventGoHome.value = false
     }
@@ -19,6 +23,10 @@ class SoundViewModel : ViewModel(){
     }
     fun doneGoingHome(){
         _eventGoHome.value = false
+    }
+
+    fun setSound(choice: Int){
+        _sound.value = choice
     }
 
 }

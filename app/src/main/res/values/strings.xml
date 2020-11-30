@@ -25,4 +25,10 @@
     <string name="text_press_me">Press Me!</string>
     <string name="button_clear">Clear</string>
     <string name="cleared_message">All presets deleted!</string>
+    <string name="button_set_picture">Set Picture</string>
+    <string name="text_fart">Fart</string>
+    <string name="text_meep_merp">Meep Merp</string>
+    <string name="btn_choose">Choose</string>
+    <string name="text_chimes">Chimes</string>
+    <string name="text_teehee">Teehee</string>
 </resources>

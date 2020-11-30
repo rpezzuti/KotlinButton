@@ -1,5 +1,6 @@
 package rhett.pezzuti.kotlinbutton.sound
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -40,11 +41,21 @@ class SoundFragment : Fragment() {
             }
         })
 
-
-
-
+        soundViewModel.sound.observe(viewLifecycleOwner, {
+            playSound(it)
+        })
 
 
         return binding.root
+    }
+
+    private
+    fun playSound(sound: Int){
+        when (sound){
+            1 -> MediaPlayer.create(this.context, R.raw.meepmerp).start()
+            2 -> MediaPlayer.create(this.context, R.raw.chimes).start()
+            3 -> MediaPlayer.create(this.context, R.raw.fart).start()
+            4 -> MediaPlayer.create(this.context, R.raw.teehee).start()
+        }
     }
 }

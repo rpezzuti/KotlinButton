@@ -48,12 +48,11 @@
             app:layout_constraintTop_toBottomOf="@+id/text_view_current_text" />
 
         <Button
-            android:id="@+id/button_save"
+            android:id="@+id/button_set_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_save_message"
+            android:text="@string/button_set_picture"
             android:layout_margin="@dimen/margin_small"
-            android:onClick="@{() -> textViewModelXML.onSaveMessage()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_new_text" />
