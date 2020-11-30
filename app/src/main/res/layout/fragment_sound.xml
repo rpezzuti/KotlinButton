@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -14,26 +12,167 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".sound.SoundFragment">
+        tools:context=".SoundActivity"
+        android:background="@color/favPurple">
 
         <TextView
-            android:id="@+id/sound_fragment_intro"
-            style="@style/text_intro_style"
+            android:id="@+id/text_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/text_sound_intro"
+            android:textSize="44sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/sound_fart"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> soundViewModelXML.setSound(3)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_fart" />
+
         <Button
-            android:id="@+id/btn_save"
+            android:id="@+id/btn_meep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:text="@string/button_save_preset"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_choose"
             android:onClick="@{() -> soundViewModelXML.goHome()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sound_meep" />
+
+        <TextView
+            android:id="@+id/text_fart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginLeft="92dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/text_fart"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_meep" />
+
+        <ImageView
+            android:id="@+id/sound_meep"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> soundViewModelXML.setSound(1)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_meep" />
+
+        <TextView
+            android:id="@+id/text_meep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/text_meep_merp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_sound" />
+
+        <Button
+            android:id="@+id/btn_fart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{() -> soundViewModelXML.goHome()}"
+            android:text="@string/btn_choose"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sound_fart" />
+
+        <Button
+            android:id="@+id/btn_chimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
+            android:onClick="@{() -> soundViewModelXML.goHome()}"
+            android:text="@string/btn_choose"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/sound_chimes" />
+
+        <ImageView
+            android:id="@+id/sound_chimes"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp"
+            android:onClick="@{() -> soundViewModelXML.setSound(2)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_chimes" />
+
+        <TextView
+            android:id="@+id/text_chimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginRight="84dp"
+            android:text="@string/text_chimes"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_sound" />
+
+        <TextView
+            android:id="@+id/text_teehee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="88dp"
+            android:layout_marginRight="88dp"
+            android:text="@string/text_teehee"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_chimes" />
+
+        <ImageView
+            android:id="@+id/sound_teehee"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp"
+            android:onClick="@{() -> soundViewModelXML.setSound(4)}"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_teehee" />
+
+        <Button
+            android:id="@+id/btn_teehee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="68dp"
+            android:onClick="@{() -> soundViewModelXML.goHome()}"
+            android:layout_marginRight="68dp"
+            android:text="@string/btn_choose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sound_teehee" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

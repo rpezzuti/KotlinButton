@@ -47,10 +47,12 @@ class TextFragment : Fragment() {
             viewModel.onSetPicture(binding.editTextNewText.text.toString())
         }
 
-        viewModel.navigateToSetPicture.observe(viewLifecycleOwner, {preset ->
-            if (preset.text != "message_text"){
-                findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment(preset.presetId))
-                // done navigating?
+        viewModel.navigateToSetPicture.observe(viewLifecycleOwner, { preset ->
+            preset?.let {
+                if (preset.text != "message_text"){
+                    findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment(preset.presetId))
+                    // done navigating?
+                }
             }
         })
 

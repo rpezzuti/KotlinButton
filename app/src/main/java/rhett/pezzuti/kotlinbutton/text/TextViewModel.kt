@@ -42,10 +42,6 @@ class TextViewModel(
         _eventSaveMessage.value = false
     }
 
-    private fun initEdit(){
-
-    }
-
     private fun initializePreset() {
         viewModelScope.launch {
             Timber.i("initializePreset() called")

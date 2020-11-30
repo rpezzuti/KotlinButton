@@ -1,39 +1,51 @@
 package rhett.pezzuti.kotlinbutton.picture
 
+import android.database.sqlite.SQLiteCantOpenDatabaseException
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.database.ButtonPreset
+import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
 import timber.log.Timber
 
-class PictureViewModel : ViewModel(){
+class PictureViewModel(
+    private val presetKey: Long = 0L,
+    val database: PresetDatabaseDao
+) : ViewModel(){
 
-
-    private var chosenPicture: Int = 0
 
     /** Encapsulated Variables **/
     private val _eventNavigateForward = MutableLiveData<Boolean>()
     val eventNagivateForward : LiveData<Boolean>
         get() = _eventNavigateForward
 
+    private val _navigatePreset = MutableLiveData<ButtonPreset>()
+    val navigatePreset : LiveData<ButtonPreset>
+        get() = _navigatePreset
+
     /** Init Block **/
     init {
+        Timber.i("called")
         _eventNavigateForward.value = false
     }
 
-    fun picture(view: View){
-        when (view.id){
-            R.id.image_1 -> chosenPicture = 1
-            R.id.image_2 -> chosenPicture = 1
-            R.id.image_3 -> chosenPicture = 1
-            R.id.image_4 -> chosenPicture = 1
-            R.id.image_5 -> chosenPicture = 1
-            R.id.image_6 -> chosenPicture = 1
-            R.id.image_7 -> chosenPicture = 1
-            R.id.image_8 -> chosenPicture = 1
-            R.id.image_9 -> chosenPicture = 1
-            R.id.image_10 -> chosenPicture = 1
+    fun picture(picture: Int){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                Timber.i("called")
+                val preset = database.get(presetKey)  ?: return@withContext
+                preset.picture = picture
+                Timber.i("it is not null")
+                database.update(preset)
+
+            }
+            _eventNavigateForward.value = true
         }
     }
 
