@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Update
 
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.database.ButtonPreset
@@ -42,7 +41,6 @@ class PresetAdapter : RecyclerView.Adapter<PresetAdapter.ViewHolder>() {
             image.setImageResource(R.drawable.ic_launcher_background)
             message.text = item.text
             sound.text = item.sound.toString()
-            TODO("Update this shit to get the right variables")
         }
 
 

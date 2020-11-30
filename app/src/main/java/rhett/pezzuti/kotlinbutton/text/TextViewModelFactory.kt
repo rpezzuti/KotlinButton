@@ -7,13 +7,13 @@ import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
 
 @Suppress("UNCHECKED_CAST")
 class TextViewModelFactory(
-    private val presetKey: Long = 0L,
-    private val dataSource: PresetDatabaseDao
+    private val dataSource: PresetDatabaseDao,
+    private val application: Application
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(TextViewModel::class.java)) {
-            return TextViewModel(presetKey, dataSource) as T
+            return TextViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

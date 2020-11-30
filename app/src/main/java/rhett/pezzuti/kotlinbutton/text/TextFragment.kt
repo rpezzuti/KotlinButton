@@ -35,23 +35,31 @@ class TextFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = PresetDatabase.getInstance(application).presetDatabaseDao
 
-        viewModelFactory = TextViewModelFactory(0L, dataSource)
+        viewModelFactory = TextViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(TextViewModel::class.java)
         binding.textViewModelXML = viewModel
         binding.lifecycleOwner = this
 
 
 
-        viewModel.eventSaveMessage.observe(viewLifecycleOwner, {event ->
-            if (event == true){
-                this.findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment())
-                viewModel.onDoneSaveMessage()
+
+        binding.buttonSetPicture.setOnClickListener {
+            viewModel.onSetPicture(binding.editTextNewText.text.toString())
+        }
+
+        viewModel.navigateToSetPicture.observe(viewLifecycleOwner, {preset ->
+            if (preset.text != "message_text"){
+                findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment(preset.presetId))
+                // done navigating?
             }
         })
 
-
-
-
+//        viewModel.eventSaveMessage.observe(viewLifecycleOwner, {event ->
+//            if (event == true){
+//                this.findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment())
+//                viewModel.onDoneSaveMessage()
+//            }
+//        })
 
 
         return binding.root

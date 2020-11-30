@@ -71,37 +71,31 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
+        /** Recycler View Pipes **/
+        val adapter = PresetAdapter()
+        binding.recyclerView.adapter = adapter
+        homeViewModel.presets.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.data = it
+            }
+        })
+
         /** Navigation Observers **/
-        homeViewModel.eventChangeText.observe(viewLifecycleOwner, {
-            if (it == true) {
-                Timber.i("eventChangeText observer triggered")
-
-
+        homeViewModel.navigateToSetText.observe(viewLifecycleOwner, { event ->
+            if (event == true){
                 this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToTextFragment2())
-
-
-
-                Timber.i("this is the current destination ${findNavController().currentDestination?.id}")
-                Timber.i("this is the id of the home fragment ${R.id.homeFragment}")
-
-                if (findNavController().currentDestination?.id == R.id.homeFragment){
-                    Timber.i("currentDestination is the text fragment")
-                } else {
-                    Timber.i("else block called")
-                }
-
-                Timber.i("navigation action called")
                 homeViewModel.doneChangingText()
             }
         })
 
-        homeViewModel.eventLaunch.observe(viewLifecycleOwner, {
-            if (it == true) {
+        homeViewModel.navigateToButton.observe(viewLifecycleOwner, { event ->
+            if (event == true) {
                 this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment())
                 homeViewModel.doneLaunching()
             }
         })
 
+        /** SnackBar Observer **/
         homeViewModel.showSnackBarEvent.observe(viewLifecycleOwner, { it ->
             if (it == true){
                 Snackbar.make(

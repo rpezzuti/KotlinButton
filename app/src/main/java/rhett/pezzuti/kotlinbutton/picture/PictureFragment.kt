@@ -1,6 +1,5 @@
 package rhett.pezzuti.kotlinbutton.picture
 
-import android.graphics.Picture
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,6 +33,10 @@ class PictureFragment : Fragment() {
         binding.pictureViewModelXML = pictureViewModel
 
         binding.lifecycleOwner = this
+
+        val arguments = PictureFragmentArgs.fromBundle(requireArguments())
+
+        binding.presetID.text = arguments.presetId.toString()
 
         pictureViewModel.eventNagivateForward.observe(viewLifecycleOwner, {event ->
             if (event == true){
