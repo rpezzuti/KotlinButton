@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.database.PresetDatabase
-import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
 import rhett.pezzuti.kotlinbutton.databinding.TextFragmentBinding
 
 class TextFragment : Fragment() {
@@ -47,13 +46,23 @@ class TextFragment : Fragment() {
             viewModel.onSetPicture(binding.editTextNewText.text.toString())
         }
 
-        viewModel.navigateToSetPicture.observe(viewLifecycleOwner, { preset ->
-            preset?.let {
-                if (preset.text != "message_text"){
-                    findNavController().navigate(TextFragmentDirections.actionTextFragmentToPictureFragment(preset.presetId))
-                    // done navigating?
-                }
+        viewModel.navigateToSetPicture.observe(viewLifecycleOwner, { presetKey ->
+            presetKey?.let {
+                this.findNavController().navigate(
+                    TextFragmentDirections.actionTextFragmentToPictureFragment(
+                        presetKey.presetId
+                    )
+                )
+                viewModel.doneNavigating()
             }
+            /*if (presetKey != -1L) {
+                this.findNavController().navigate(
+                    TextFragmentDirections.actionTextFragmentToPictureFragment(
+                        presetKey
+                    )
+                )
+                // done navigating
+            }*/
         })
 
 //        viewModel.eventSaveMessage.observe(viewLifecycleOwner, {event ->
@@ -66,11 +75,6 @@ class TextFragment : Fragment() {
 
         return binding.root
     }
-
-
-
-
-
 
 
 }
