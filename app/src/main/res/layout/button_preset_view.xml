@@ -1,43 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/button_preset_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/margin_small"
-        tools:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/button_preset_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        style="@style/text_intro_style"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_preset_image"
-        app:layout_constraintTop_toTopOf="@+id/button_preset_image"
-        tools:text="test" />
+        <variable
+            name="preset"
+            type="rhett.pezzuti.kotlinbutton.database.ButtonPreset" />
+    </data>
 
-    <TextView
-        android:id="@+id/button_preset_sound"
-        style="@style/text_intro_style"
-        android:textStyle="normal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
-        app:layout_constraintBottom_toBottomOf="@+id/button_preset_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_preset_image"
-        tools:text="interesring" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/button_preset_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:presetImage="@{preset}"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/button_preset_text"
+            style="@style/text_intro_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_preset_image"
+            app:layout_constraintTop_toTopOf="@+id/button_preset_image"
+            app:presetMessage="@{preset}"
+            tools:text="test" />
+
+        <TextView
+            android:id="@+id/button_preset_sound"
+            style="@style/text_intro_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/button_preset_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_preset_image"
+            app:presetSound="@{preset}"
+            tools:text="interesring" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
