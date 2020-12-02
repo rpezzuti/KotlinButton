@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         homeViewModel.presets.observe(viewLifecycleOwner, {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
