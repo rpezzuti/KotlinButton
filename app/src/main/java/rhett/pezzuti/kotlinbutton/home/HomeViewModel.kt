@@ -50,7 +50,7 @@ class HomeViewModel(
     init {
         Timber.i("Init block started")
         Timber.i("initializePreset() finished")
-        sampleData()
+        //sampleData()
         _navigateToSetText.value = false
         _navigateToButton.value = false
         _showSnackBarEvent.value = false

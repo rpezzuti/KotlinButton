@@ -1,14 +1,14 @@
 package rhett.pezzuti.kotlinbutton.picture
 
 import android.database.sqlite.SQLiteCantOpenDatabaseException
+import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
@@ -29,23 +29,37 @@ class PictureViewModel(
     val navigatePreset : LiveData<ButtonPreset>
         get() = _navigatePreset
 
+    fun doneNavigating(){
+        _navigatePreset.value = null
+        _eventNavigateForward.value = false
+    }
+
+    /** Current Preset **/
+    private val currentPreset = MutableLiveData<ButtonPreset>()
+
     /** Init Block **/
     init {
         Timber.i("called")
         _eventNavigateForward.value = false
     }
 
-    fun picture(picture: Int){
+    fun picture(quality: Int) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                Timber.i("called")
+            Timber.i( "picture(quality: Int) called")
+            withContext(Dispatchers.IO) {
+                // not running because this shit is null
                 val preset = database.get(presetKey)  ?: return@withContext
-                preset.picture = picture
-                Timber.i("it is not null")
-                database.update(preset)
-
+                Timber.i( "preset retrieved")
+                preset.picture = quality
+                update(preset)
             }
             _eventNavigateForward.value = true
+        }
+    }
+
+    private suspend fun update(preset: ButtonPreset){
+        withContext(Dispatchers.IO){
+            database.update(preset)
         }
     }
 

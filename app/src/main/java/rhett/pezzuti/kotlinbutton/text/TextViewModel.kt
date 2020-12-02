@@ -1,7 +1,6 @@
 package rhett.pezzuti.kotlinbutton.text
 
 import android.app.Application
-import android.widget.EditText
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -9,7 +8,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.database.PresetDatabaseDao
-import kotlinx.android.synthetic.main.*
 import timber.log.Timber
 
 class TextViewModel(
@@ -34,7 +32,7 @@ class TextViewModel(
     }
 
     /** Current Mutable Preset, could be null **/
-    private var preset = MutableLiveData<ButtonPreset?>()
+    private var currentPreset = MutableLiveData<ButtonPreset?>()
 
     init {
         Timber.i("init block called")
@@ -45,18 +43,18 @@ class TextViewModel(
     private fun initializePreset() {
         viewModelScope.launch {
             Timber.i("initializePreset() called")
-            preset.value = getCurrentPresetFromDatabase()
+            currentPreset.value = getCurrentPresetFromDatabase()
         }
     }
 
     private suspend fun getCurrentPresetFromDatabase(): ButtonPreset?{
         return withContext(Dispatchers.IO) {
             Timber.i("getCurrentPresetFromDatabase() called")
-            var preset = database.getCurrentPreset()
+            val preset = database.getCurrentPreset()
 
-            if (preset?.sound == -1){
-                preset = null
-            }
+//            if (preset?.sound == -1){
+//                preset = null
+//            }
             preset
         }
     }
@@ -68,9 +66,12 @@ class TextViewModel(
             // Then, set the mutableLiveData preset to the new one, with the new text string, causing the observer to trigger
             // Use that trigger to navigate to the picture fragment, with the presetID passed from the mutabledata preset.
             val newPreset = ButtonPreset()
-            newPreset.text = message
+            //newPreset.text = message
             insert(newPreset)
-            _navigateToSetPicture.value = newPreset
+            currentPreset.value = getCurrentPresetFromDatabase()
+            currentPreset.value?.text = message
+            currentPreset.value?.let { update(it) }
+            _navigateToSetPicture.value = currentPreset.value
         }
     }
 
@@ -78,6 +79,12 @@ class TextViewModel(
         withContext(Dispatchers.IO){
             Timber.i("called")
             database.insert(preset)
+        }
+    }
+
+    private suspend fun update(preset: ButtonPreset){
+        withContext(Dispatchers.IO){
+            database.update(preset)
         }
     }
 

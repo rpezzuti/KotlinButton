@@ -43,7 +43,7 @@ class PictureFragment : Fragment() {
 
         pictureViewModel.eventNagivateForward.observe(viewLifecycleOwner, {event ->
             if (event == true){
-                findNavController().navigate(PictureFragmentDirections.actionPictureFragmentToSoundFragment(0L))
+                findNavController().navigate(PictureFragmentDirections.actionPictureFragmentToSoundFragment(arguments.presetId))
                 pictureViewModel.onDoneNavigating()
             }
         })

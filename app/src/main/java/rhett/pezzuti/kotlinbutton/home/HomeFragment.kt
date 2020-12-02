@@ -26,11 +26,7 @@ class HomeFragment : Fragment() {
 
     /**
      *                             TODO BLOCK
-     * - I'd be awesome to have each variable of the preset (teXt, sound, and picture) be saved immediately
-     *   after navigating away from the fragment. Could initialize the new preset when the make preset
-     *   button is called, and then update the preset as the user navigates through the fragments.
-     *
-     * - Create the RecyclerView to hold past presets in the database, for the lols.
+     * - Continue working on the recycler view & database.
      *
      * - Create a View object that displays the current preset, and make it clear to the user
      *   that it is the current preset and not part of the past presets in the RecyclerView.

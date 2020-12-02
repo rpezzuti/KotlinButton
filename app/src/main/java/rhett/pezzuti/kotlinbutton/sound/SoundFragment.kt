@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import rhett.pezzuti.kotlinbutton.R
+import rhett.pezzuti.kotlinbutton.database.PresetDatabase
 import rhett.pezzuti.kotlinbutton.databinding.FragmentSoundBinding
 
 class SoundFragment : Fragment() {
@@ -29,11 +30,20 @@ class SoundFragment : Fragment() {
                 false
         )
 
-        viewModelFactory = SoundViewModelFactory()
+        val application = requireNotNull(this.activity).application
+        val dataSource = PresetDatabase.getInstance(application).presetDatabaseDao
+        val arguments = SoundFragmentArgs.fromBundle(requireArguments())
+
+
+        viewModelFactory = SoundViewModelFactory(arguments.presetId, dataSource)
         soundViewModel = ViewModelProvider(this, viewModelFactory).get(SoundViewModel::class.java)
         binding.soundViewModelXML = soundViewModel
         binding.lifecycleOwner = this
 
+        /** Sets TextView to show the presetID **/
+        binding.textPresetKey.text = arguments.presetId.toString()
+
+        /** Navigation Observer **/
         soundViewModel.eventGoHome.observe(viewLifecycleOwner, { event ->
             if (event == true) {
                 this.findNavController().navigate(SoundFragmentDirections.actionSoundFragmentToHomeFragment())
@@ -41,6 +51,7 @@ class SoundFragment : Fragment() {
             }
         })
 
+        /** MediaPlayer Observer **/
         soundViewModel.sound.observe(viewLifecycleOwner, {
             playSound(it)
         })
