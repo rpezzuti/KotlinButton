@@ -2,6 +2,7 @@ package rhett.pezzuti.kotlinbutton.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,19 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import rhett.pezzuti.kotlinbutton.database.ButtonPreset
 import rhett.pezzuti.kotlinbutton.databinding.ButtonPresetViewBinding
 
-class PresetAdapter : ListAdapter<ButtonPreset,PresetAdapter.ViewHolder>(SleepNightDiffCallBack()) {
-
-   /* *//** this is the data to be displayed, and the setter below is used to tell the RV when data has changed. **//*
-    var data = listOf<ButtonPreset>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-    }*/
-
+class PresetAdapter(val clickListener: ButtonPresetListener) : ListAdapter<ButtonPreset,PresetAdapter.ViewHolder>(ButtonPresetDiffCallBack()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,8 +24,9 @@ class PresetAdapter : ListAdapter<ButtonPreset,PresetAdapter.ViewHolder>(SleepNi
 
     class ViewHolder private constructor(val binding: ButtonPresetViewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: ButtonPreset){
+        fun bind(item: ButtonPreset, clickListener: ButtonPresetListener){
             binding.preset = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -46,17 +40,20 @@ class PresetAdapter : ListAdapter<ButtonPreset,PresetAdapter.ViewHolder>(SleepNi
             }
         }
     }
+}
 
+class ButtonPresetDiffCallBack : DiffUtil.ItemCallback<ButtonPreset>() {
 
-    class SleepNightDiffCallBack : DiffUtil.ItemCallback<ButtonPreset>() {
-
-        override fun areItemsTheSame(oldItem: ButtonPreset, newItem: ButtonPreset): Boolean {
-            return oldItem.presetId == newItem.presetId
-        }
-
-        override fun areContentsTheSame(oldItem: ButtonPreset, newItem: ButtonPreset): Boolean {
-            return oldItem == newItem
-        }
+    override fun areItemsTheSame(oldItem: ButtonPreset, newItem: ButtonPreset): Boolean {
+        return oldItem.presetId == newItem.presetId
     }
 
+    override fun areContentsTheSame(oldItem: ButtonPreset, newItem: ButtonPreset): Boolean {
+        return oldItem == newItem
+    }
+}
+
+/** Takes a preset, uses its id, and returns the unit **/
+class ButtonPresetListener(val clickListener: (presetId: Long) -> Unit) {
+    fun onClick(preset: ButtonPreset) = clickListener(preset.presetId)
 }

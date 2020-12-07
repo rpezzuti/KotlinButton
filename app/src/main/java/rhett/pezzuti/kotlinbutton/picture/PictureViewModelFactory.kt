@@ -16,7 +16,4 @@ class PictureViewModelFactory(
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-
-
-
 }

@@ -29,4 +29,7 @@ interface PresetDatabaseDao {
 
     @Query ("SELECT * FROM button_preset_table ORDER BY presetID DESC LIMIT 1")
     fun getCurrentPreset(): ButtonPreset?
+
+    @Query ("SELECT * from button_preset_table WHERE presetId = :key")
+    fun getPresetWithId(key: Long): LiveData<ButtonPreset>
 }

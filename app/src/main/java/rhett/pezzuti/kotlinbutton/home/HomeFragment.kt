@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,10 +27,8 @@ class HomeFragment : Fragment() {
 
     /**
      *                             TODO BLOCK
-     * - Continue working on the recycler view & database.
-     *
-     * - Create a View object that displays the current preset, and make it clear to the user
-     *   that it is the current preset and not part of the past presets in the RecyclerView.
+     * - Implement recyclerView onClick to use the selected preset for the button game.
+     *              - When on details, use data binding to play the sound instead of onCLick listener.
      *
      * - Make the fragment where the user pushes the button a little prettier
      *          • Edit the background?
@@ -63,12 +62,15 @@ class HomeFragment : Fragment() {
         /** Set binding variables **/
         binding.homeViewModelXML = homeViewModel
 
-        /** Pipes **/
+        /** Allows Data Binding to Observe LiveData with the lifecycle of this Fragment **/
         binding.lifecycleOwner = this
 
 
         /** Recycler View Pipes **/
-        val adapter = PresetAdapter()
+        val adapter = PresetAdapter(ButtonPresetListener {
+            // presetId -> Toast.makeText(context, "ID: $presetId", Toast.LENGTH_SHORT).show()
+            presetId -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(presetId))
+        })
         binding.recyclerView.adapter = adapter
         homeViewModel.presets.observe(viewLifecycleOwner, {
             it?.let {
@@ -86,7 +88,7 @@ class HomeFragment : Fragment() {
 
         homeViewModel.navigateToButton.observe(viewLifecycleOwner, { event ->
             if (event == true) {
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment())
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment(0L))
                 homeViewModel.doneLaunching()
             }
         })
