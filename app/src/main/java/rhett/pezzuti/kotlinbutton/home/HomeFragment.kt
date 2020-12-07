@@ -35,6 +35,9 @@ class HomeFragment : Fragment() {
      *          • Add a joke?
      *          • IDFK
      *
+     * - Add cool fade animation to when you launch the button fragment from the details fragment
+     *
+     * - Improve recycler view click listener to also add the preset sound ID to the arguments.
      */
 
 

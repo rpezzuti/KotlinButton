@@ -50,23 +50,12 @@ class HomeViewModel(
     init {
         Timber.i("Init block started")
         Timber.i("initializePreset() finished")
-        //sampleData()
         _navigateToSetText.value = false
         _navigateToButton.value = false
         _showSnackBarEvent.value = false
     }
 
 
-
-    private fun sampleData(){
-        viewModelScope.launch {
-            val samplePreset = ButtonPreset()
-            samplePreset.text = "sample text"
-            samplePreset.sound = 4
-            samplePreset.picture = 5
-            insert(samplePreset)
-        }
-    }
 
     private suspend fun insert(preset: ButtonPreset){
         withContext(Dispatchers.IO){
