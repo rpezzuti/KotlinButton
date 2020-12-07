@@ -32,19 +32,4 @@ class GameViewModel(
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

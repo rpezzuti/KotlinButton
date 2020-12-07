@@ -54,6 +54,6 @@ class ButtonPresetDiffCallBack : DiffUtil.ItemCallback<ButtonPreset>() {
 }
 
 /** Takes a preset, uses its id, and returns the unit **/
-class ButtonPresetListener(val clickListener: (presetId: Long) -> Unit) {
-    fun onClick(preset: ButtonPreset) = clickListener(preset.presetId)
+class ButtonPresetListener(val clickListener: (presetId: Long, presetSound: Int) -> Unit) {
+    fun onClick(preset: ButtonPreset) = clickListener(preset.presetId, preset.sound)
 }

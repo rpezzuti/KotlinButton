@@ -40,6 +40,9 @@
         <argument
             android:name="presetKey"
             app:argType="long" />
+        <argument
+            android:name="presetSound"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
@@ -106,5 +109,8 @@
         <argument
             android:name="presetKey"
             app:argType="long" />
+        <argument
+            android:name="presetSound"
+            app:argType="integer" />
     </fragment>
 </navigation>

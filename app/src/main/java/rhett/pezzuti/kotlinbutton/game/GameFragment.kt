@@ -41,10 +41,13 @@ class GameFragment : Fragment() {
         binding.gameViewModelXML = viewModel
         binding.lifecycleOwner = this
 
+
+
+
         viewModel.eventPressButton.observe(viewLifecycleOwner, { event ->
             if (event == true){
                 this.findNavController().navigate(GameFragmentDirections.actionButtonFragmentToResultFragment(arguments.presetKey))
-                viewModel.onDonePressButton()
+                playSound(arguments.presetSound)
             }
         })
 

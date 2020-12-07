@@ -52,7 +52,7 @@ class DetailsFragment : Fragment() {
 
         detailsViewModel.navigateToButtonFragment.observe(viewLifecycleOwner, { event ->
             if (event == true){
-                findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToGameFragment(arguments.presetKey))
+                findNavController().navigate(DetailsFragmentDirections.actionDetailsFragmentToGameFragment(arguments.presetKey, arguments.presetSound))
                 detailsViewModel.doneNavigatingToButton()
             }
         })
