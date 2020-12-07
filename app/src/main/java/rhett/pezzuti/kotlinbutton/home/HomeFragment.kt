@@ -35,6 +35,10 @@ class HomeFragment : Fragment() {
      *          • Add a joke?
      *          • IDFK
      *
+     * - Add cool fade animation to when you launch the button fragment from the details fragment
+     *
+     * - Improve recycler view click listener to also add the preset sound ID to the arguments.
+     *
      */
 
 
@@ -69,7 +73,7 @@ class HomeFragment : Fragment() {
         /** Recycler View Pipes **/
         val adapter = PresetAdapter(ButtonPresetListener {
             // presetId -> Toast.makeText(context, "ID: $presetId", Toast.LENGTH_SHORT).show()
-            presetId -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(presetId))
+            presetId, presetSound -> findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(presetId, presetSound))
         })
         binding.recyclerView.adapter = adapter
         homeViewModel.presets.observe(viewLifecycleOwner, {
@@ -88,7 +92,7 @@ class HomeFragment : Fragment() {
 
         homeViewModel.navigateToButton.observe(viewLifecycleOwner, { event ->
             if (event == true) {
-                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment(0L))
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToButtonFragment(0L, 0))
                 homeViewModel.doneLaunching()
             }
         })
