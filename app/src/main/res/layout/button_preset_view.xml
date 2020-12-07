@@ -8,11 +8,15 @@
         <variable
             name="preset"
             type="rhett.pezzuti.kotlinbutton.database.ButtonPreset" />
+        <variable
+            name="clickListener"
+            type="rhett.pezzuti.kotlinbutton.home.ButtonPresetListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(preset)}">
 
         <ImageView
             android:id="@+id/button_preset_image"

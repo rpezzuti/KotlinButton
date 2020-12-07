@@ -14,20 +14,22 @@ fun TextView.setPresetMessage(item: ButtonPreset?){
 }
 
 @BindingAdapter("presetImage")
-fun ImageView.setPresetImage(item: ButtonPreset){
-    setImageResource(when (item.picture){
-        1 -> R.drawable.heart
-        2 -> R.drawable.awesome
-        3 -> R.drawable.i_miss_you
-        4 -> R.drawable.im_a_ball
-        5 -> R.drawable.sorry
-        6 -> R.drawable.sprout
-        7 -> R.drawable.stop
-        8 -> R.drawable.tongue
-        9 -> R.drawable.troll
-        10 -> R.drawable.yes
-        else -> R.drawable.ic_launcher_background
-    })
+fun ImageView.setPresetImage(item: ButtonPreset?){
+    item?.let {
+        setImageResource(when (item.picture){
+            1 -> R.drawable.heart
+            2 -> R.drawable.awesome
+            3 -> R.drawable.i_miss_you
+            4 -> R.drawable.im_a_ball
+            5 -> R.drawable.sorry
+            6 -> R.drawable.sprout
+            7 -> R.drawable.stop
+            8 -> R.drawable.tongue
+            9 -> R.drawable.troll
+            10 -> R.drawable.yes
+            else -> R.drawable.ic_launcher_background
+        })
+    }
 }
 
 @BindingAdapter("presetSound")

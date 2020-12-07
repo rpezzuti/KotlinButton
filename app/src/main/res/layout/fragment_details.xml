@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="detailsViewModel"
+            type="rhett.pezzuti.kotlinbutton.details.DetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/details_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:presetImage="@{detailsViewModel.preset}"
+            tools:src="@drawable/tongue" />
+
+        <TextView
+            android:id="@+id/details_message"
+            style="@style/text_intro_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_very_large"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_image"
+            app:presetMessage="@{detailsViewModel.preset}"
+            tools:text="Sample Message" />
+
+
+        <TextView
+            android:id="@+id/details_sound_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/details_sound_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_message" />
+
+        <ImageView
+            android:id="@+id/details_play_sound"
+            android:layout_width="69dp"
+            android:layout_height="69dp"
+            android:src="@drawable/ic_baseline_volume_up_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/margin_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_sound_text" />
+
+        <TextView
+            android:id="@+id/details_preset_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/button_launch_preset"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Preset: 1234" />
+
+        <Button
+            android:id="@+id/button_launch_preset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/button_launch"
+            android:onClick="@{() -> detailsViewModel.navigateToButton()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

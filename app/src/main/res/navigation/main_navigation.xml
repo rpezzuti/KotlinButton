@@ -20,6 +20,11 @@
             app:destination="@id/textFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -30,6 +35,9 @@
             android:id="@+id/action_buttonFragment_to_resultFragment"
             app:destination="@id/resultFragment"
             app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="presetKey"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/pictureFragment"
@@ -80,5 +88,16 @@
             app:destination="@id/pictureFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="rhett.pezzuti.kotlinbutton.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <action
+            android:id="@+id/action_detailsFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <argument
+            android:name="presetKey"
+            app:argType="long" />
     </fragment>
 </navigation>

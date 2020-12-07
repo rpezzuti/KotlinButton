@@ -31,4 +31,5 @@
     <string name="btn_choose">Choose</string>
     <string name="text_chimes">Chimes</string>
     <string name="text_teehee">Teehee</string>
+    <string name="details_sound_text">Click to hear your sound!</string>
 </resources>
