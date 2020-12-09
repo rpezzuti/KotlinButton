@@ -32,4 +32,6 @@
     <string name="text_chimes">Chimes</string>
     <string name="text_teehee">Teehee</string>
     <string name="details_sound_text">Click to hear your sound!</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_settings">Settings</string>
 </resources>

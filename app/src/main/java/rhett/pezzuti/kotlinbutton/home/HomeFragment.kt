@@ -1,10 +1,8 @@
 package rhett.pezzuti.kotlinbutton.home
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -36,8 +34,11 @@ class HomeFragment : Fragment() {
      *          • IDFK
      *
      * - Add cool fade animation to when you launch the button fragment from the details fragment
-     *
-     * - Improve recycler view click listener to also add the preset sound ID to the arguments.
+     * - Add header to recycler view
+     * - Add menu for settings & info about app and how to use it
+     * - Play with permissions?
+     * - Change the top of the home fragment layout to have text or something.
+     *                • I.E. remove the 3 textView items and put something else there
      *
      */
 
@@ -82,6 +83,8 @@ class HomeFragment : Fragment() {
             }
         })
 
+
+
         /** Navigation Observers **/
         homeViewModel.navigateToSetText.observe(viewLifecycleOwner, { event ->
             if (event == true){
@@ -98,8 +101,8 @@ class HomeFragment : Fragment() {
         })
 
         /** SnackBar Observer **/
-        homeViewModel.showSnackBarEvent.observe(viewLifecycleOwner, { it ->
-            if (it == true){
+        homeViewModel.showSnackBarEvent.observe(viewLifecycleOwner, { event ->
+            if (event == true){
                 Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     getString(R.string.cleared_message),
@@ -109,7 +112,30 @@ class HomeFragment : Fragment() {
             }
         })
 
+        /** Define an Options Menu **/
+        setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.nav_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.show_info_menu -> Snackbar.make(
+                requireActivity().findViewById(android.R.id.content),
+                "Info Menu Item Selected",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            R.id.show_settings_menu -> Snackbar.make(
+                requireActivity().findViewById(android.R.id.content),
+                "Settings Menu Item Selected",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
