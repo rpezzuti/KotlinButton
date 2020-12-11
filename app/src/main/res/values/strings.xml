@@ -2,9 +2,6 @@
     <string name="app_name">KotlinButton</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <!-- Buttons -->
     <string name="button_picture">Picture</string>
     <string name="button_text">Text</string>
@@ -12,24 +9,46 @@
     <string name="button_snackbar">Snackbar</string>
     <string name="button_save_message">Save Message</string>
     <string name="button_save_preset">Save Message</string>
+    <string name="button_next">Next</string>
+    <string name="button_preset">Make Preset</string>
+    <string name="button_clear">Clear</string>
+    <string name="button_launch">Launch</string>
+    <string name="button_set_picture">Set Picture</string>
+    <string name="button_choose">Choose</string>
 
 
-    <!-- TextView fragment Intros -->
+    <!-- TextView Intros -->
+    <string name="details_sound_text">Click to hear your sound!</string>
+    <string name="text_picture_intro">Choose your picture!</string>
     <string name="text_sound_intro">Pick your sound!</string>
     <string name="text_text_intro">Set the new button text</string>
-    <string name="button_next">Next</string>
-    <string name="hint_new_message">Type your new message here!</string>
-    <string name="button_preset">Make Preset</string>
-    <string name="text_picture_intro">Choose your picture!</string>
-    <string name="button_launch">Launch</string>
+
+    <!-- TextView Elements -->
     <string name="text_press_me">Press Me!</string>
-    <string name="button_clear">Clear</string>
-    <string name="cleared_message">All presets deleted!</string>
-    <string name="button_set_picture">Set Picture</string>
+    <string name="text_teehee">Teehee</string>
     <string name="text_fart">Fart</string>
     <string name="text_meep_merp">Meep Merp</string>
-    <string name="btn_choose">Choose</string>
     <string name="text_chimes">Chimes</string>
-    <string name="text_teehee">Teehee</string>
-    <string name="details_sound_text">Click to hear your sound!</string>
+
+    <!-- Menu Titles -->
+    <string name="menu_info">Info</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Drawer Titles -->
+    <string name="drawer_info">Info</string>
+
+    <!-- Hints -->
+    <string name="hint_new_message">Type your new message here!</string>
+
+    <!-- Alerts -->
+    <string name="cleared_message">All presets deleted!</string>
+
+
+
+    <!-- Others To Sort -->
+    <string name="text_intro_about">Welcome!</string>
+    <string name="text_about_paragraph">This is a simple app to give a message to your friends. Make a preset, choose your message, picture and sound, then click on the preset to start it. Then, give your device to your friend, and when the press the button, your custom message will appear!</string>
+    <string name="text_return">Click anywhere to return.</string>
+    <string name="menu_about">About</string>
+
 </resources>

@@ -58,7 +58,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginTop="8dp"
-            android:text="@string/btn_choose"
+            android:text="@string/button_choose"
             android:onClick="@{() -> soundViewModelXML.selectSound(1)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sound_meep" />
@@ -96,7 +96,7 @@
             android:layout_marginEnd="64dp"
             android:layout_marginRight="64dp"
             android:onClick="@{() -> soundViewModelXML.selectSound(2)}"
-            android:text="@string/btn_choose"
+            android:text="@string/button_choose"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sound_chimes" />
 
@@ -134,7 +134,7 @@
             android:layout_marginLeft="64dp"
             android:layout_marginTop="8dp"
             android:onClick="@{() -> soundViewModelXML.selectSound(3)}"
-            android:text="@string/btn_choose"
+            android:text="@string/button_choose"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sound_fart" />
 
@@ -172,7 +172,7 @@
             android:layout_marginEnd="68dp"
             android:onClick="@{() -> soundViewModelXML.selectSound(4)}"
             android:layout_marginRight="68dp"
-            android:text="@string/btn_choose"
+            android:text="@string/button_choose"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sound_teehee" />
 
