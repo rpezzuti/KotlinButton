@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/show_info_menu"
-        android:title="@string/menu_info">
+        android:id="@+id/aboutFragment"
+        android:title="@string/menu_about">
     </item>
     <item
         android:id="@+id/show_settings_menu"

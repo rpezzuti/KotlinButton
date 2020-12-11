@@ -100,7 +100,8 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="rhett.pezzuti.kotlinbutton.details.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_gameFragment"
             app:destination="@id/gameFragment"
@@ -113,4 +114,9 @@
             android:name="presetSound"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="rhett.pezzuti.kotlinbutton.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

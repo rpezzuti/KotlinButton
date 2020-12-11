@@ -3,10 +3,11 @@ package rhett.pezzuti.kotlinbutton.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.android.material.snackbar.Snackbar
 import rhett.pezzuti.kotlinbutton.R
 import rhett.pezzuti.kotlinbutton.database.PresetDatabase
@@ -117,27 +118,34 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    /** Overflow Menu Methods **/
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.nav_menu, menu)
+        inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.show_info_menu -> Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                "Info Menu Item Selected",
-                Snackbar.LENGTH_SHORT
-            ).show()
-            R.id.show_settings_menu -> Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                "Settings Menu Item Selected",
-                Snackbar.LENGTH_SHORT
-            ).show()
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//        when (item.itemId){
+//            R.id.show_info_menu -> Snackbar.make(
+//                requireActivity().findViewById(android.R.id.content),
+//                "Info Menu Item Selected",
+//                Snackbar.LENGTH_SHORT
+//            ).show()
+//            R.id.show_settings_menu -> Snackbar.make(
+//                requireActivity().findViewById(android.R.id.content),
+//                "Settings Menu Item Selected",
+//                Snackbar.LENGTH_SHORT
+//            ).show()
+//        }
+//        return super.onOptionsItemSelected(item)
 
+
+
+        // This return statement works when the id of the menu item matches the id of the fragment in the nav graph.
+        return NavigationUI.onNavDestinationSelected(item!!, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
+
+
+    }
 
     /** Lifecycle Methods **/
     override fun onCreate(savedInstanceState: Bundle?) {
